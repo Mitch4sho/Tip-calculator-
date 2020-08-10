@@ -9,29 +9,73 @@
   <body>
     <div id="containerOne">
       <h1>Your settings</h1>
-      <form>
-        Name:<br /><input id="name" type="text" name="name" /> <br />The lowest
-        bill:<br />
-        <input id="lowBill" type="number" name="bill" /><br />
-        Tip #1 percentage:<br />
-        <input id="tip1" type="number" name="tip" /><br />The next highest
-        bill<br />
-        <input id="medBill" type="number" name="bill" /><br />
-        Tip #2 percentage:<br />
-        <input id="tip2" type="number" name="tip" /><br />The highest Bill You
-        have #3:<br />
-        <input id="highBill" type="number" name="bill" /><br />
-        Tip #3 percentage:<br />
-        <input id="tip3" type="number" name="tip" /><br />
-        <input class="submitBtnOne" type="button" value="Submit form" />
+      <form name="settingsForm" action=" ">
+        <input
+        type ='text'
+        class ='input'
+        name = 'name'
+        placeholder="Enter First Name"
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'lowBill'
+        placeholder="Enter Lowest Bill "
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'medBill'
+        placeholder="Enter Midsize Bill"
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'highBill'
+        placeholder="Enter Largest Bill"
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'tip1'
+        placeholder="Enter Percentage"
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'tip2'
+        placeholder="Enter Percentage"
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'tip3'
+        placeholder="Enter Percentage"
+        ></input>
+        <!-- submit button for settings -->
+        <input
+          class="submitBtn"
+          type="button"
+          value="Submit form"
+          onClick="saveNewPerson(this.form)"
+        ></input>
       </form>
     </div>
     <div id="containerTwo">
       <h1>Enter your restaurants bills</h1>
       <form>
-        Restaurants:<br /><input type="text" name="name" /><br />
-        Bill<br /><input type="text" name="number" /><br />
-        <input class="submitBtnTwo" type="button" value="Submit form" />
+        <input
+        type ='text'
+        class ='input'
+        name = 'restaurants'
+        placeholder="Enter Restaurants"
+        ></input>
+        <input
+        type ='text'
+        class ='input'
+        name = 'billAmount'
+        placeholder="Enter Bill"
+        ></input>
       </form>
     </div>
   </body>
