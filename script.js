@@ -2,6 +2,7 @@
 const people = [];
 const bills = [];
 const tips = [];
+const billsAndTips = [];
 
 // Functions
 
@@ -11,7 +12,6 @@ saveNewPerson = (form) => {
     // values from the forms that are assign to the object
     let name = form.name.value;
     let lowBill = form.lowBill.value;
-    let medBill = form.medBill.value;
     let highBill = form.highBill.value;
     let tip1 = form.tip1.value / 100;
     let tip2 = form.tip2.value / 100;
@@ -22,7 +22,6 @@ saveNewPerson = (form) => {
     people.push({
         'name': name,
         'lowest': lowBill,
-        'medium': medBill,
         'high': highBill,
         'tip1': tip1,
         'tip2': tip2,
@@ -34,14 +33,10 @@ saveNewPerson = (form) => {
     // this reset the forms values 
     form.name.value = "  ";
     form.lowBill.value = " ";
-    form.medBill.value = " ";
     form.highBill.value = " ";
     form.tip1.value = " ";
     form.tip2.value = " ";
     form.tip3.value = " ";
-
-    // The parameters should be the information from the bills array 
-    tipCalculation();
 }
 
 
@@ -50,7 +45,11 @@ function collectBills(form) {
     bills.push(form.billAmount.value);
     form.billAmount.value = " ";
     form.restaurants.value = " ";
-    console.log(' these are the collect bills' + bills);
+    console.log('these are the collect bills ' + bills);
+
+    for (let j = 0; j < bills.length; j++) {
+        tipCalculation(bills[j]);
+    }
 }
 
 function tipCalculation(bill) {
@@ -68,5 +67,5 @@ function tipCalculation(bill) {
         }
 
     }
-    console.log(tips);
+    console.log('these are the collect tips ' + tips);
 }
