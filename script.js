@@ -11,8 +11,8 @@ saveNewPerson = (form) => {
     event.preventDefault();
     // values from the forms that are assign to the object
     let name = form.name.value;
-    let lowBill = form.lowBill.value;
-    let highBill = form.highBill.value;
+    let lowBill = parseInt(form.lowBill.value);
+    let highBill = parseInt(form.highBill.value);
     let tip1 = form.tip1.value / 100;
     let tip2 = form.tip2.value / 100;
     let tip3 = form.tip3.value / 100;
@@ -40,6 +40,26 @@ saveNewPerson = (form) => {
 }
 
 
+function tipCalculation(bill) {
+    for (let i = 0; i < people.length; i++) {
+
+        if (bill <= people[i].lowest) {
+            var tip = people[i].tip1 * bill;
+            // tips.push(tip);
+        } else if (bill > people[i].lowest && bill < people[i].high) {
+            var tip = people[i].tip2 * bill;
+            // tips.push(tip);
+        } else {
+            var tip = people[i].tip3 * bill;
+            // tips.push(tip);
+        }
+
+    }
+    console.log('these are the collect tips ' + tips);
+    tips.push(tip);
+}
+
+
 // function to collect restaurant bills from the user and push it to the array
 function collectBills(form) {
     bills.push(form.billAmount.value);
@@ -49,23 +69,8 @@ function collectBills(form) {
 
     for (let j = 0; j < bills.length; j++) {
         tipCalculation(bills[j]);
+        let totalBill = parseInt(bills[j]) + parseInt(tips);
+        billsAndTips.push(totalBill);
+        console.log("This is the total Bill " + totalBill);
     }
-}
-
-function tipCalculation(bill) {
-    for (let i = 0; i < people.length; i++) {
-
-        if (bill <= people[i].lowest) {
-            let tip = people[i].tip1 * bill;
-            tips.push(tip);
-        } else if (bill > people[i].lowest && bill < people[i].high) {
-            let tip = people[i].tip2 * bill;
-            tips.push(tip);
-        } else {
-            let tip = people[i].tip3 * bill;
-            tips.push(tip);
-        }
-
-    }
-    console.log('these are the collect tips ' + tips);
 }
