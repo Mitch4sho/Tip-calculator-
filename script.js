@@ -1,6 +1,6 @@
 // Arrays 
 const people = [];
-const bills = [];
+var bills = [];
 const tips = [];
 const billsAndTips = [];
 
@@ -39,24 +39,18 @@ saveNewPerson = (form) => {
     form.tip3.value = " ";
 }
 
-
 function tipCalculation(bill) {
-    for (let i = 0; i < people.length; i++) {
-
-        if (bill <= people[i].lowest) {
-            var tip = people[i].tip1 * bill;
-            // tips.push(tip);
-        } else if (bill > people[i].lowest && bill < people[i].high) {
-            var tip = people[i].tip2 * bill;
-            // tips.push(tip);
-        } else {
-            var tip = people[i].tip3 * bill;
-            // tips.push(tip);
-        }
-
+    if (bill <= people.lowest) {
+        var tip = people.tip1 * bill;
+        tips.push(tip);
+    } else if (bill > people.lowest && bill < people.high) {
+        var tip = people[i].tip2 * bill;
+        tips.push(tip);
+    } else {
+        var tip = people.tip3 * bill;
+        tips.push(tip);
     }
     console.log('these are the collect tips ' + tips);
-    tips.push(tip);
 }
 
 
@@ -68,7 +62,19 @@ function collectBills(form) {
     console.log('these are the collect bills ' + bills);
 
     for (let j = 0; j < bills.length; j++) {
-        tipCalculation(bills[j]);
+        people.forEach(function () {
+            if (bill <= people.lowest) {
+                var tip = people.tip1 * bill;
+                tips.push(tip);
+            } else if (bill > people.lowest && bill < people.high) {
+                var tip = people.tip2 * bill;
+                tips.push(tip);
+            } else {
+                var tip = people.tip3 * bill;
+                tips.push(tip);
+            }
+            console.log('these are the collect tips ' + tips);
+        });
         let totalBill = parseInt(bills[j]) + parseInt(tips);
         billsAndTips.push(totalBill);
         console.log("This is the total Bill " + totalBill);
