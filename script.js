@@ -42,7 +42,7 @@ saveNewPerson = (form) => {
         var para = document.createElement("P");
         var t = document.createTextNode("Name: " + people[f].name);
         para.appendChild(t);
-        document.getElementById('output').appendChild(para);
+        document.getElementById('outputList').appendChild(para);
     }
 }
 
@@ -62,7 +62,6 @@ function tipCalculation(bill) {
     console.log('these are the collected tips ' + tips);
 }
 
-
 // function to collect restaurant bills from the user calculate your tips and push it to the array
 function collectBills(form) {
     bills.push(form.billAmount.value);
@@ -74,16 +73,44 @@ function collectBills(form) {
         var bill = bills[j];
     }
     tipCalculation(bill);
+    outputBills();
     let totalBill = parseInt(bill) + parseInt(tips);
     billsAndTips.push(totalBill);
     console.log("All your bills " + billsAndTips);
 }
+
 // a function to create a new element in the output container 
-function myFunction() {
-    for (let f = 0; f < people.length; f++) {
-        var li1 = document.createElement('li');
-        var t = document.createTextNode("Your bills: " + bill[f]);
-        para.appendChild(t);
-        document.getElementById('output').appendChild(para);
+function outputBills() {
+    const outputList = document.getElementById('outputList');
+
+    if (document.getElementById('outputList').getElementsByTagName('li').length < 1) {
+        const billsListElement = document.createElement('li');
+        const tipsListElement = document.createElement('li');
+
+        var yourBills = document.createTextNode("Your bills: " + bills);
+        var yourTips = document.createTextNode("Your Tips: " + tips);
+
+        tipsListElement.appendChild(yourTips);
+        billsListElement.appendChild(yourBills);
+
+        outputList.appendChild(billsListElement);
+        outputList.appendChild(tipsListElement);
+    } else {
+        const billsListElement = outputList.children[1];
+        const tipsListElement = outputList.children[2];
+
+        const testCode = document.createElement('li');
+        const testCode2 = document.createElement('li');
+        // const testCode3 = document.createElement('li');
+
+        const replaceBills = document.createTextNode("Your bills: " + bills);
+        const replaceTips = document.createTextNode("Your Tips: " + tips);
+
+        testCode.appendChild(replaceBills);
+        testCode2.appendChild(replaceTips);
+
+        outputList.replaceChild(testCode, billsListElement);
+        outputList.replaceChild(testCode2, tipsListElement);
+
     }
 }
