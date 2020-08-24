@@ -49,13 +49,13 @@ saveNewPerson = (form) => {
 function tipCalculation(bill) {
     for (let i = 0; i < people.length; i++) {
         if (bill <= people[i].lowest) {
-            let tip = people[i].tip1 * bill;
+            let tip = Math.round(people[i].tip1 * bill);
             tips.push(tip);
         } else if (bill > people[i].lowest && bill < people[i].high) {
-            let tip = people[i].tip2 * bill;
+            let tip = Math.round(people[i].tip2 * bill);
             tips.push(tip);
         } else {
-            let tip = people[i].tip3 * bill;
+            let tip = Math.round(people[i].tip3 * bill);
             tips.push(tip);
         }
     }
@@ -73,10 +73,10 @@ function collectBills(form) {
         var bill = bills[j];
     }
     tipCalculation(bill);
-    outputBills();
     let totalBill = parseInt(bill) + parseInt(tips);
     billsAndTips.push(totalBill);
     console.log("All your bills " + billsAndTips);
+    outputBills();
 }
 
 // a function to create a new element in the output container 
@@ -86,31 +86,40 @@ function outputBills() {
     if (document.getElementById('outputList').getElementsByTagName('li').length < 1) {
         const billsListElement = document.createElement('li');
         const tipsListElement = document.createElement('li');
+        const totalCostElement = document.createElement('li');
 
         var yourBills = document.createTextNode("Your bills: " + bills);
         var yourTips = document.createTextNode("Your Tips: " + tips);
+        var yourTotalCost = document.createTextNode("Your Total cost: " + billsAndTips);
 
         tipsListElement.appendChild(yourTips);
         billsListElement.appendChild(yourBills);
+        totalCostElement.appendChild(yourTotalCost);
 
         outputList.appendChild(billsListElement);
         outputList.appendChild(tipsListElement);
+        outputList.appendChild(totalCostElement);
+
     } else {
         const billsListElement = outputList.children[1];
         const tipsListElement = outputList.children[2];
+        const totalCostElement = outputList.children[3];
 
         const testCode = document.createElement('li');
         const testCode2 = document.createElement('li');
-        // const testCode3 = document.createElement('li');
+        const testCode3 = document.createElement('li');
 
         const replaceBills = document.createTextNode("Your bills: " + bills);
         const replaceTips = document.createTextNode("Your Tips: " + tips);
+        const replaceTotal = document.createTextNode("Your Total: " + billsAndTips);
 
         testCode.appendChild(replaceBills);
         testCode2.appendChild(replaceTips);
+        testCode3.appendChild(replaceTotal);
 
         outputList.replaceChild(testCode, billsListElement);
         outputList.replaceChild(testCode2, tipsListElement);
+        outputList.replaceChild(testCode3, totalCostElement);
 
     }
 }

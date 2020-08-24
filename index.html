@@ -7,6 +7,8 @@
     <title>Tip Calculator</title>
   </head>
   <body>
+    <section id = "stepOne">
+    <h1>Step One</h1>
     <div id="containerOne">
       <h1>Your settings</h1>
       <form name="settingsForm" action=" ">
@@ -31,21 +33,21 @@
         name = 'highBill'
         placeholder="Enter Largest Bill"
         ></input>
-        <Label>Enter tip percentage for the lowest setting</Label>
+        <Label>Enter a percentage</Label>
         <input
-        type ='text'
+        type ='number'
         class ='input'
         name = 'tip1'
         placeholder="Enter Percentage"
         ></input>
-        <Label>Enter tip percentage for bills between the lowest and highest bill</Label>
+        <Label>Enter 2nd percentage</Label>
         <input
         type ='text'
         class ='input'
         name = 'tip2'
         placeholder="Enter Percentage"
         ></input>
-        <Label>Enter Percentage for the highest setting </Label>
+        <Label>Enter 3rd percentage </Label>
         <input
         type ='text'
         class ='input'
@@ -61,15 +63,13 @@
         ></input>
       </form>
     </div>
+    </section>
+    <section id = "stepTwo">
+    <h1>Step Two</h1>
     <div id="containerTwo">
       <h1>Enter your restaurants bills</h1>
       <form>
-        <input
-        type ='text'
-        class ='input'
-        name = 'restaurants'
-        placeholder="Enter Restaurants"
-        ></input>
+        <label>Bill</label>
         <input
         type ='text'
         class ='input'
@@ -84,6 +84,7 @@
         ></input>
       </form>
     </div>
+  </section>
     <div id="outputContainer">
       <ul id = 'outputList'>
       </ul>
