@@ -44,6 +44,7 @@ saveNewPerson = (form) => {
         para.appendChild(t);
         document.getElementById('outputList').appendChild(para);
     }
+    outputSection();
 }
 
 function tipCalculation(bill) {
@@ -66,7 +67,6 @@ function tipCalculation(bill) {
 function collectBills(form) {
     bills.push(form.billAmount.value);
     form.billAmount.value = " ";
-    form.restaurants.value = " ";
     console.log('these are the collected bills ' + bills);
 
     for (let j = 0; j < bills.length; j++) {
@@ -121,5 +121,17 @@ function outputBills() {
         outputList.replaceChild(testCode2, tipsListElement);
         outputList.replaceChild(testCode3, totalCostElement);
 
+    }
+}
+
+function outputSection() {
+    for (p = 0; p < people.length; p++) {
+        if (p <= people.length) {
+            const outputDiv = document.createElement('div');
+            outputDiv.setAttribute('id', 'outputContainer');
+            const ulList = document.createElement('ul');
+            ulList.setAttribute('id', 'outputList');
+            outputDiv.appendChild(ulList);
+        }
     }
 }

@@ -23,7 +23,15 @@ input {
   margin: 10px;
 }
 
-#containerTwo {
-  display: flex;
-  flex-direction: column;
+#stepOne h1 {
+  width: 150px;
+  margin: 40px;
+}
+#stepTwo h1 {
+  width: 150px;
+  margin: 40px;
+}
+#outputSection h1 {
+  width: 150px;
+  margin: 40px;
 }
