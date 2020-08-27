@@ -3,11 +3,6 @@ const people = [];
 
 
 
-const bills = [];
-const tips = [];
-const billsAndTips = [];
-
-// Functions
 
 // function to create new person object and push in to the people array 
 saveNewPerson = (form) => {
@@ -30,7 +25,9 @@ saveNewPerson = (form) => {
         'tip1': tip1,
         'tip2': tip2,
         'tip3': tip3,
-        'test': []
+        'bills': [],
+        'tips': [],
+        'billsAndTips': []
     })
     console.log(people);
 
@@ -43,61 +40,61 @@ saveNewPerson = (form) => {
     form.tip3.value = " ";
 
     outputSection();
-
-
 }
 
 // Tip calculations functions
 function tipCalculation(bill) {
-    for (let i = 0; i < people.length; i++) {
+    let i = people.length - 1;
+
+    if (i === people.length - 1) {
         if (bill <= people[i].lowest) {
             let tip = Math.round(people[i].tip1 * bill);
-            tips.push(tip);
+            people[i].tips.push(tip);
         } else if (bill > people[i].lowest && bill < people[i].high) {
             let tip = Math.round(people[i].tip2 * bill);
-            tips.push(tip);
+            people[i].tips.push(tip);
         } else {
             let tip = Math.round(people[i].tip3 * bill);
-            tips.push(tip);
+            people[i].tips.push(tip);
         }
+        console.log('these are the collected tips ' + people[i].tips);
     }
-    console.log('these are the collected tips ' + tips);
 }
 
-var testBills = [];
 
 // function to collect restaurant bills from the user calculate your tips and push it to the array
 function collectBills(form) {
-    var newBill = parseInt(form.billAmount.value);
-    testBills.push(newBill);
-    console.log('this is the testBill array ' + testBills);
+    let i = people.length - 1;
+    if (i === people.length - 1) {
+        let newBill = parseInt(form.billAmount.value);
+        people[i].bills.push(newBill);
 
-    people[0].test.push(testBills);
-    form.billAmount.value = " ";
-    console.log('these are the collected bills ' + bills);
+        tipCalculation(newBill);
+        let totalBill = parseInt(newBill) + parseInt(people[i].tips);
+        people[i].billsAndTips.push(totalBill);
 
-    for (let j = 0; j < bills.length; j++) {
-        var bill = bills[j];
+        console.log('these are the collected bills ' + people[i].bills);
+        console.log('total amounts ' + people[i].billsAndTips);
     }
-    tipCalculation(bill);
-    let totalBill = parseInt(bill) + parseInt(tips);
-    billsAndTips.push(totalBill);
-    console.log("All your bills " + billsAndTips);
+
+    form.billAmount.value = " ";
+
     outputBills();
 }
 
 // a function to create a new element in the output container 
 function outputBills() {
     const outputList = document.getElementById(people.length - 1);
+    const i = people.length - 1;
 
     if (outputList.getElementsByTagName('li').length < 1) {
         const billsListElement = document.createElement('li');
         const tipsListElement = document.createElement('li');
         const totalCostElement = document.createElement('li');
 
-        var yourBills = document.createTextNode("Your bills: " + bills);
-        var yourTips = document.createTextNode("Your Tips: " + tips);
-        var yourTotalCost = document.createTextNode("Your Total cost: " + billsAndTips);
+        var yourBills = document.createTextNode("Your bills: " + people[i].bills);
+        var yourTips = document.createTextNode("Your Tips: " + people[i].tips);
+        var yourTotalCost = document.createTextNode("Your Total cost: " + people[i].billsAndTips);
 
         tipsListElement.appendChild(yourTips);
         billsListElement.appendChild(yourBills);
@@ -116,9 +113,9 @@ function outputBills() {
         const testCode2 = document.createElement('li');
         const testCode3 = document.createElement('li');
 
-        const replaceBills = document.createTextNode("Your bills: " + bills);
-        const replaceTips = document.createTextNode("Your Tips: " + tips);
-        const replaceTotal = document.createTextNode("Your Total: " + billsAndTips);
+        const replaceBills = document.createTextNode("Your bills: " + people[i].bills);
+        const replaceTips = document.createTextNode("Your Tips: " + people[i].tips);
+        const replaceTotal = document.createTextNode("Your Total: " + people[i].billsAndTips);
 
         testCode.appendChild(replaceBills);
         testCode2.appendChild(replaceTips);
