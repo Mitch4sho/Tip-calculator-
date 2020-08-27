@@ -1,5 +1,8 @@
 // Arrays 
 const people = [];
+
+
+
 const bills = [];
 const tips = [];
 const billsAndTips = [];
@@ -18,6 +21,7 @@ saveNewPerson = (form) => {
     let tip2 = form.tip2.value / 100;
     let tip3 = form.tip3.value / 100;
 
+
     // this push the properties to the PEOPLE array
     people.push({
         'name': name,
@@ -26,6 +30,7 @@ saveNewPerson = (form) => {
         'tip1': tip1,
         'tip2': tip2,
         'tip3': tip3,
+        'test': []
     })
     console.log(people);
 
@@ -37,16 +42,12 @@ saveNewPerson = (form) => {
     form.tip2.value = " ";
     form.tip3.value = " ";
 
-    // this creates a new element in the output container for the name
-    for (let f = 0; f < people.length; f++) {
-        var para = document.createElement("P");
-        var t = document.createTextNode("Name: " + people[f].name);
-        para.appendChild(t);
-        document.getElementById('outputList').appendChild(para);
-    }
     outputSection();
+
+
 }
 
+// Tip calculations functions
 function tipCalculation(bill) {
     for (let i = 0; i < people.length; i++) {
         if (bill <= people[i].lowest) {
@@ -63,9 +64,15 @@ function tipCalculation(bill) {
     console.log('these are the collected tips ' + tips);
 }
 
+var testBills = [];
+
 // function to collect restaurant bills from the user calculate your tips and push it to the array
 function collectBills(form) {
-    bills.push(form.billAmount.value);
+    var newBill = parseInt(form.billAmount.value);
+    testBills.push(newBill);
+    console.log('this is the testBill array ' + testBills);
+
+    people[0].test.push(testBills);
     form.billAmount.value = " ";
     console.log('these are the collected bills ' + bills);
 
@@ -81,9 +88,9 @@ function collectBills(form) {
 
 // a function to create a new element in the output container 
 function outputBills() {
-    const outputList = document.getElementById('outputList');
+    const outputList = document.getElementById(people.length - 1);
 
-    if (document.getElementById('outputList').getElementsByTagName('li').length < 1) {
+    if (outputList.getElementsByTagName('li').length < 1) {
         const billsListElement = document.createElement('li');
         const tipsListElement = document.createElement('li');
         const totalCostElement = document.createElement('li');
@@ -122,16 +129,24 @@ function outputBills() {
         outputList.replaceChild(testCode3, totalCostElement);
 
     }
+
 }
 
 function outputSection() {
-    for (p = 0; p < people.length; p++) {
-        if (p <= people.length) {
-            const outputDiv = document.createElement('div');
-            outputDiv.setAttribute('id', 'outputContainer');
-            const ulList = document.createElement('ul');
-            ulList.setAttribute('id', 'outputList');
-            outputDiv.appendChild(ulList);
-        }
+    // this adds the person in the array of people to the div
+    let i = people.length - 1;
+    let para = document.createElement("P");
+    let person = document.createTextNode("Name: " + people[i].name);
+    if (i === people.length - 1) {
+        para.appendChild(person);
     }
+
+    //  this adds new div to the output section 
+    const outputDiv = document.createElement('div');
+    outputDiv.setAttribute('id', 'outputContainer');
+    const ulList = document.createElement('ul');
+    ulList.id = people.length - 1;
+    ulList.appendChild(para);
+    outputDiv.appendChild(ulList);
+    document.getElementById('test').appendChild(outputDiv);
 }

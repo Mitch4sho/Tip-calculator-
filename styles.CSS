@@ -31,7 +31,8 @@ input {
   width: 150px;
   margin: 40px;
 }
-#outputSection h1 {
-  width: 150px;
-  margin: 40px;
+#outputContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
 }
