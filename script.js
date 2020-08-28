@@ -1,9 +1,6 @@
 // Arrays 
 const people = [];
 
-
-
-
 // function to create new person object and push in to the people array 
 saveNewPerson = (form) => {
 
@@ -60,7 +57,6 @@ function tipCalculation(bill) {
         console.log('these are the collected tips ' + people[i].tips);
     }
 }
-
 
 // function to collect restaurant bills from the user calculate your tips and push it to the array
 function collectBills(form) {
@@ -132,7 +128,7 @@ function outputBills() {
 function outputSection() {
     // this adds the person in the array of people to the div
     let i = people.length - 1;
-    let para = document.createElement("P");
+    let para = document.createElement("h1");
     let person = document.createTextNode("Name: " + people[i].name);
     if (i === people.length - 1) {
         para.appendChild(person);
@@ -145,5 +141,5 @@ function outputSection() {
     ulList.id = people.length - 1;
     ulList.appendChild(para);
     outputDiv.appendChild(ulList);
-    document.getElementById('test').appendChild(outputDiv);
+    document.getElementById('personOutput').appendChild(outputDiv);
 }
