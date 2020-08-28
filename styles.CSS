@@ -28,20 +28,22 @@ h1 {
 
 #personOutput {
   display: none;
-}
-
-/* #stepOne h1 {
-  width: 150px;
-  margin: 40px;
-}
-#stepTwo h1 {
-  width: 150px;
-  margin: 40px;
-} */
-/* #outputSection {
+  /* make transparent  */
 }
 #outputContainer {
+  display: flex;
+  font-size: 10px;
+  margin: 15px;
+  padding: 0px;
+  flex-wrap: wrap;
+}
+#outputContainer ul {
+  margin: 0px;
+  padding: 0px;
 }
 
-#outputContainer h2 {
-} */
+#outputContainer li {
+  margin: 5px;
+  padding: 5px;
+  list-style: none;
+}

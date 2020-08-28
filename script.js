@@ -37,6 +37,7 @@ saveNewPerson = (form) => {
     form.tip3.value = " ";
 
     outputSection();
+    myFunction();
 }
 
 // Tip calculations functions
@@ -142,4 +143,14 @@ function outputSection() {
     ulList.appendChild(para);
     outputDiv.appendChild(ulList);
     document.getElementById('personOutput').appendChild(outputDiv);
+}
+
+function myFunction() {
+    var x = document.getElementById("personOutput");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "block";
+    }
+    console.log('hi');
 }
