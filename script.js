@@ -24,7 +24,8 @@ saveNewPerson = (form) => {
         'tip3': tip3,
         'bills': [],
         'tips': [],
-        'billsAndTips': []
+        'billsAndTips': [],
+        'average': []
     })
     console.log(people);
 
@@ -78,50 +79,61 @@ function collectBills(form) {
     form.billAmount.value = " ";
 
     outputBills();
+    average();
 }
 
 // a function to create a new element in the output container 
 function outputBills() {
     const outputList = document.getElementById(people.length - 1);
     const i = people.length - 1;
+    const t = people[i].tips.length - 1;
 
     if (outputList.getElementsByTagName('li').length < 1) {
         const billsListElement = document.createElement('li');
         const tipsListElement = document.createElement('li');
         const totalCostElement = document.createElement('li');
+        const avgTips = document.createElement('li');
 
         var yourBills = document.createTextNode("Your bills: " + people[i].bills);
         var yourTips = document.createTextNode("Your Tips: " + people[i].tips);
         var yourTotalCost = document.createTextNode("Your Total cost: " + people[i].billsAndTips);
+        var totalAvg = document.createTextNode("Average tip: " + people[i].average[t]);
 
         tipsListElement.appendChild(yourTips);
         billsListElement.appendChild(yourBills);
         totalCostElement.appendChild(yourTotalCost);
+        avgTips.appendChild(totalAvg);
 
         outputList.appendChild(billsListElement);
         outputList.appendChild(tipsListElement);
         outputList.appendChild(totalCostElement);
+        outputList.appendChild(avgTips);
 
     } else {
         const billsListElement = outputList.children[1];
         const tipsListElement = outputList.children[2];
         const totalCostElement = outputList.children[3];
+        const avgTips = outputList.children[4];
 
         const testCode = document.createElement('li');
         const testCode2 = document.createElement('li');
         const testCode3 = document.createElement('li');
+        const testCode4 = document.createElement('li');
 
         const replaceBills = document.createTextNode("Your bills: " + people[i].bills);
         const replaceTips = document.createTextNode("Your Tips: " + people[i].tips);
         const replaceTotal = document.createTextNode("Your Total: " + people[i].billsAndTips);
+        const replaceAvg = document.createTextNode("Average tip:" + people[i].average[t]);
 
         testCode.appendChild(replaceBills);
         testCode2.appendChild(replaceTips);
         testCode3.appendChild(replaceTotal);
+        testCode4.appendChild(replaceAvg);
 
         outputList.replaceChild(testCode, billsListElement);
         outputList.replaceChild(testCode2, tipsListElement);
         outputList.replaceChild(testCode3, totalCostElement);
+        outputList.replaceChild(testCode4, avgTips);
 
     }
 
@@ -146,6 +158,7 @@ function outputSection() {
     document.getElementById('personOutput').appendChild(outputDiv);
 }
 
+// this function displays the output when submit button pressed
 function myFunction() {
     var x = document.getElementById("personOutput");
     if (x.style.display === "none") {
@@ -153,4 +166,18 @@ function myFunction() {
     } else {
         x.style.display = "block";
     }
+}
+
+function average() {
+    let i = people.length - 1;
+    let t = people[i].tips.length - 1;
+    const sum = people[i].tips.reduce(function (a, b) {
+        return a + b;
+    }, 0);
+    console.log('the total sum of tips: ' + sum);
+
+    const averageTip = sum / people[i].tips.length;
+    console.log('the average tip ' + averageTip);
+
+    people[i].average.push(averageTip);
 }
