@@ -67,7 +67,8 @@ function collectBills(form) {
         people[i].bills.push(newBill);
 
         tipCalculation(newBill);
-        let totalBill = parseInt(newBill) + parseInt(people[i].tips);
+        let t = people[i].tips.length - 1;
+        let totalBill = parseInt(newBill) + parseInt(people[i].tips[t]);
         people[i].billsAndTips.push(totalBill);
 
         console.log('these are the collected bills ' + people[i].bills);
@@ -152,5 +153,4 @@ function myFunction() {
     } else {
         x.style.display = "block";
     }
-    console.log('hi');
 }
