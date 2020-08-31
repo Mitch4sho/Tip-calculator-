@@ -60,8 +60,27 @@ function tipCalculation(bill) {
     }
 }
 
+
+function average() {
+    let i = people.length - 1;
+    let t = people[i].tips.length - 1;
+
+    let sum = people[i].tips.reduce(function (a, b) {
+        return a + b;
+    }, 0);
+    console.log('the total sum of tips: ' + sum);
+
+    const averageTip = Math.round(sum / people[i].tips.length);
+    console.log('the average tip ' + averageTip);
+
+
+    people[i].average.push(averageTip);
+
+}
+
 // function to collect restaurant bills from the user calculate your tips and push it to the array
 function collectBills(form) {
+
     let i = people.length - 1;
     if (i === people.length - 1) {
         let newBill = parseInt(form.billAmount.value);
@@ -71,6 +90,7 @@ function collectBills(form) {
         let t = people[i].tips.length - 1;
         let totalBill = parseInt(newBill) + parseInt(people[i].tips[t]);
         people[i].billsAndTips.push(totalBill);
+        average();
 
         console.log('these are the collected bills ' + people[i].bills);
         console.log('total amounts ' + people[i].billsAndTips);
@@ -79,14 +99,14 @@ function collectBills(form) {
     form.billAmount.value = " ";
 
     outputBills();
-    average();
+
 }
 
 // a function to create a new element in the output container 
 function outputBills() {
     const outputList = document.getElementById(people.length - 1);
     const i = people.length - 1;
-    const t = people[i].tips.length - 1;
+    const t = people[i].average.length - 1;
 
     if (outputList.getElementsByTagName('li').length < 1) {
         const billsListElement = document.createElement('li');
@@ -97,7 +117,8 @@ function outputBills() {
         var yourBills = document.createTextNode("Your bills: " + people[i].bills);
         var yourTips = document.createTextNode("Your Tips: " + people[i].tips);
         var yourTotalCost = document.createTextNode("Your Total cost: " + people[i].billsAndTips);
-        var totalAvg = document.createTextNode("Average tip: " + people[i].average[t]);
+        var totalAvg = document.createTextNode("Average tip: " + people[i].average);
+        console.log(people[i].average);
 
         tipsListElement.appendChild(yourTips);
         billsListElement.appendChild(yourBills);
@@ -124,6 +145,7 @@ function outputBills() {
         const replaceTips = document.createTextNode("Your Tips: " + people[i].tips);
         const replaceTotal = document.createTextNode("Your Total: " + people[i].billsAndTips);
         const replaceAvg = document.createTextNode("Average tip:" + people[i].average[t]);
+        console.log(people[i].average[t]);
 
         testCode.appendChild(replaceBills);
         testCode2.appendChild(replaceTips);
@@ -166,18 +188,4 @@ function myFunction() {
     } else {
         x.style.display = "block";
     }
-}
-
-function average() {
-    let i = people.length - 1;
-    let t = people[i].tips.length - 1;
-    const sum = people[i].tips.reduce(function (a, b) {
-        return a + b;
-    }, 0);
-    console.log('the total sum of tips: ' + sum);
-
-    const averageTip = sum / people[i].tips.length;
-    console.log('the average tip ' + averageTip);
-
-    people[i].average.push(averageTip);
 }
