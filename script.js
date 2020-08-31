@@ -27,7 +27,6 @@ saveNewPerson = (form) => {
         'billsAndTips': [],
         'average': []
     })
-    console.log(people);
 
     // this reset the forms values 
     form.name.value = "  ";
@@ -56,11 +55,10 @@ function tipCalculation(bill) {
             let tip = Math.round(people[i].tip3 * bill);
             people[i].tips.push(tip);
         }
-        console.log('these are the collected tips ' + people[i].tips);
     }
 }
 
-
+//  this calculates the average of the tips 
 function average() {
     let i = people.length - 1;
     let t = people[i].tips.length - 1;
@@ -68,11 +66,8 @@ function average() {
     let sum = people[i].tips.reduce(function (a, b) {
         return a + b;
     }, 0);
-    console.log('the total sum of tips: ' + sum);
 
     const averageTip = Math.round(sum / people[i].tips.length);
-    console.log('the average tip ' + averageTip);
-
 
     people[i].average.push(averageTip);
 
@@ -91,9 +86,6 @@ function collectBills(form) {
         let totalBill = parseInt(newBill) + parseInt(people[i].tips[t]);
         people[i].billsAndTips.push(totalBill);
         average();
-
-        console.log('these are the collected bills ' + people[i].bills);
-        console.log('total amounts ' + people[i].billsAndTips);
     }
 
     form.billAmount.value = " ";
@@ -118,7 +110,7 @@ function outputBills() {
         var yourTips = document.createTextNode("Your Tips: " + people[i].tips);
         var yourTotalCost = document.createTextNode("Your Total cost: " + people[i].billsAndTips);
         var totalAvg = document.createTextNode("Average tip: " + people[i].average);
-        console.log(people[i].average);
+
 
         tipsListElement.appendChild(yourTips);
         billsListElement.appendChild(yourBills);
@@ -144,8 +136,8 @@ function outputBills() {
         const replaceBills = document.createTextNode("Your bills: " + people[i].bills);
         const replaceTips = document.createTextNode("Your Tips: " + people[i].tips);
         const replaceTotal = document.createTextNode("Your Total: " + people[i].billsAndTips);
-        const replaceAvg = document.createTextNode("Average tip:" + people[i].average[t]);
-        console.log(people[i].average[t]);
+        const replaceAvg = document.createTextNode("Average tip: " + people[i].average[t]);
+
 
         testCode.appendChild(replaceBills);
         testCode2.appendChild(replaceTips);
