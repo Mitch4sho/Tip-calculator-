@@ -6,6 +6,8 @@ A calculator to set your settings for how much you want to tip for each restaura
 
 Instructions
 
+For percentages please enter whole numbers only your percentages will be calculated
+
 Step One
 you will need to know what the lowest your every paid and the highest bill you ever paid at a restaurant(you can make these numbers up). next, you will need to enter the percentage you want to pay for the lowest bill you ever paid for. then enter the percentage that you will assign to the bills in between the lowest and the highest bill. the last percentage you will enter will be assigned to the highest bill and beyond.
 
